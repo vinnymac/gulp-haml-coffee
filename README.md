@@ -70,6 +70,9 @@ gulp.task('default', function(){
 
 ```
 
+Please note that `gulp-haml-coffee` compiles to plain HTML per default. If you
+want it to compile to JavaScript instead, pass `{ js: true }` to the module.
+
 ## Options
 `Object, String`
 
