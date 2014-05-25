@@ -1,16 +1,19 @@
 {
-  "name": "gulp-haml",
-  "description": "Gulp plugin for haml",
+  "name": "gulp-haml-coffee",
+  "description": "Gulp plugin for haml-coffee",
   "version": "0.0.8",
-  "homepage": "http://github.com/stevelacy/gulp-haml",
+  "homepage": "http://github.com/saschagehlich/gulp-haml-coffee",
   "repository": {
     "type": "git",
-    "url": "http://github.com/stevelacy/gulp-haml.git"
+    "url": "http://github.com/saschagehlich/gulp-haml-coffee.git"
   },
-  "author": "Steve Lacy - http://slacy.me | Fractal http://wearefractal.com",
+  "author": "Sascha Gehlich <sascha@gehlich.us>",
+  "contributors": [
+    "Steve Lacy - http://slacy.me | Fractal http://wearefractal.com"
+  ],
   "main": "./index.js",
   "dependencies": {
-    "haml": "~0.4.3",
+    "haml-coffee": "~1.14.1",
     "map-stream": "~0.1.0",
     "replace-ext": "0.0.1"
   },
@@ -27,10 +30,10 @@
   },
   "licenses": {
     "type": "MIT",
-    "url": "https://github.com/stevelacy/gulp-haml/raw/master/LICENSE"
+    "url": "https://github.com/saschagehlich/gulp-haml-coffee/raw/master/LICENSE"
   },
   "bugs": {
-    "url": "https://github.com/stevelacy/gulp-haml/issues"
+    "url": "https://github.com/saschagehlich/gulp-haml-coffee/issues"
   },
   "directories": {
     "example": "examples",
@@ -39,6 +42,7 @@
   "keywords": [
     "gulp",
     "haml",
+    "haml-coffee",
     "haml-plugin",
     "gulpplugin",
     "gulp-plugin"

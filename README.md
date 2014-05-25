@@ -1,18 +1,18 @@
-#Gulp-Haml 
-[![Build Status](https://travis-ci.org/stevelacy/gulp-haml.png?branch=master)](https://travis-ci.org/stevelacy/gulp-haml)
-[![NPM version](https://badge.fury.io/js/gulp-haml.png)](http://badge.fury.io/js/gulp-haml)
+#Gulp-Haml-Coffee
+[![Build Status](https://travis-ci.org/saschagehlich/gulp-haml-coffee.png?branch=master)](https://travis-ci.org/saschagehlich/gulp-haml-coffee)
+[![NPM version](https://badge.fury.io/js/gulp-haml-coffee.png)](http://badge.fury.io/js/gulp-haml-coffee)
 
-Issues with the output should be reported on [haml](https://github.com/creationix/haml-js)
+Issues with the output should be reported on [haml](https://github.com/netzpirat/haml-coffee)
 
 ## Information
 
 <table>
-<tr> 
-<td>Package</td><td>gulp-haml</td>
+<tr>
+<td>Package</td><td>gulp-haml-coffee</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>Haml plugin for Gulp</td>
+<td>haml-coffee plugin for Gulp</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -26,7 +26,7 @@ Issues with the output should be reported on [haml](https://github.com/creationi
 
 ## Usage
 #### Install
-    npm install gulp-haml --save
+    npm install gulp-haml-coffee --save
 
 ## Examples
 
@@ -35,43 +35,32 @@ Issues with the output should be reported on [haml](https://github.com/creationi
 // Gulpfile.js
 // Require the needed packages
 var gulp = require('gulp');
-var haml = require('gulp-haml');
+var hamlc = require('gulp-haml-coffee');
 
 
-// Get one .haml file and render
+// Get one .hamlc file and render
 gulp.task('one', function () {
-  gulp.src('./haml/file.haml')
-    .pipe(haml())
+  gulp.src('./haml/file.hamlc')
+    .pipe(hamlc())
     .pipe(gulp.dest('./html'));
 });
 
 
-// Get all .haml files in one folder and render
+// Get all .hamlc files in one folder and render
 gulp.task('one', function () {
-  gulp.src('./haml/blue/*.haml')
-    .pipe(haml())
+  gulp.src('./haml/blue/*.hamlc')
+    .pipe(hamlc())
     .pipe(gulp.dest('./haml/blue'));
 });
 
 
 
-// Get and render all .haml files recursively 
-gulp.task('haml', function () {
-  gulp.src('./haml/**/*.haml')
-    .pipe(haml())
+// Get and render all .hamlc files recursively
+gulp.task('hamlc', function () {
+  gulp.src('./haml/**/*.hamlc')
+    .pipe(hamlc())
     .pipe(gulp.dest('./haml'));
 });
-
-
-
-// Options
-// Change file extension
-gulp.task('haml', function () {
-  gulp.src('./haml/**/*.haml')
-    .pipe(haml({ext: '.php'}))
-    .pipe(gulp.dest('./php'));
-});
-
 
 
 // Default gulp task to run
@@ -80,29 +69,18 @@ gulp.task('default', function(){
 });
 
 ```
-You can view more examples in the [example folder.](https://github.com/stevelacy/gulp-haml/tree/master/examples)
 
 ## Options
 `Object, String`
 
-Options are passed straight through to the [haml](https://npmjs.org/package/haml) module with the exclusion of `ext`
-
-### Options.ext
-`ext: String`
-
-Example:
-
-    .pipe(haml({ext: '.php'}))
-    .pipe(haml({ext: '.txt'}))
-
-
-
+Options are passed straight through to the [haml-coffee](https://npmjs.org/package/haml-coffee) module.
 
 ## LICENSE
 
 (MIT License)
 
-Copyright (c) 2014 Steve Lacy <me@slacy.me> slacy.me - Fractal <contact@wearefractal.com> wearefractal.com
+Copyright (c) 2014 Sascha Gehlich <sascha@gehlich.us>
+Derived from gulp-haml by Steve Lacy (http://slacy.me)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
