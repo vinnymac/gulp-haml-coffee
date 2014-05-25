@@ -15,10 +15,10 @@ module.exports = function(options) {
     var output;
     if (options.js) {
       output = hamlc.template(file.contents.toString("utf8"), options.name, options.namespace, options);
-      file.path = rext(file.path, "js");
+      file.path = rext(file.path, ".js");
     } else {
       output = hamlc.render(file.contents.toString("utf8"), options.locals || {});
-      file.path = rext(file.path, "html");
+      file.path = rext(file.path, ".html");
     }
     file.contents = new Buffer(output);
 

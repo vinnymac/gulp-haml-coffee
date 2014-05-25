@@ -1,7 +1,7 @@
 {
   "name": "gulp-haml-coffee",
   "description": "Gulp plugin for haml-coffee",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://github.com/saschagehlich/gulp-haml-coffee",
   "repository": {
     "type": "git",
