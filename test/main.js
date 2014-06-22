@@ -28,22 +28,42 @@ describe('gulp hamlc', function(){
     hamlStream.write(fakeFile);
   });
 
-  it('should pass rendering errors', function(done) {
-    var hamlStream = hamlc();
+  describe('error handling', function() {
+    it('should pass rendering errors', function(done) {
+      var hamlStream = hamlc();
 
-    var fakeFile = new gutil.File({
-      base: "test/src",
-      cwd: "test/",
-      path: "test/src/broken.hamlc",
-      contents: fs.readFileSync('test/src/broken.hamlc')
+      var fakeFile = new gutil.File({
+        base: "test/src",
+        cwd: "test/",
+        path: "test/src/broken.hamlc",
+        contents: fs.readFileSync('test/src/broken.hamlc')
+      });
+
+      hamlStream.once('error', function(err) {
+        err.message.should.match(/^Block level too deep/i);
+        done();
+      });
+
+      hamlStream.write(fakeFile);
     });
 
-    hamlStream.once('error', function(err) {
-      err.message.should.match(/^Block level too deep/i);
-      done();
-    });
+    it('should pass the file name', function(done) {
+      var hamlStream = hamlc();
 
-    hamlStream.write(fakeFile);
+      var fakeFile = new gutil.File({
+        base: "test/src",
+        cwd: "test/",
+        path: "test/src/broken.hamlc",
+        contents: fs.readFileSync('test/src/broken.hamlc')
+      });
+
+      hamlStream.once('error', function(err) {
+        err.fileName.should.equal('test/src/broken.hamlc');
+        done();
+      });
+
+      hamlStream.write(fakeFile);
+    });
   });
 
   describe('with `js` set to true', function() {

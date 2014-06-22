@@ -23,7 +23,10 @@ module.exports = function(options) {
         file.path = rext(file.path, ".html");
       }
     } catch (e) {
-      throw new gutil.PluginError('gulp-haml-coffee', e, { showStack: true });
+      throw new gutil.PluginError('gulp-haml-coffee', e, {
+        showStack: true,
+        fileName: file.path
+      });
     }
 
     file.contents = new Buffer(output);
