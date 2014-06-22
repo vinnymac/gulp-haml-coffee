@@ -40,25 +40,8 @@ describe('gulp hamlc', function(){
       });
 
       hamlStream.once('error', function(err) {
-        err.message.should.match(/^Block level too deep/i);
-        done();
-      });
-
-      hamlStream.write(fakeFile);
-    });
-
-    it('should pass the file name', function(done) {
-      var hamlStream = hamlc();
-
-      var fakeFile = new gutil.File({
-        base: "test/src",
-        cwd: "test/",
-        path: "test/src/broken.hamlc",
-        contents: fs.readFileSync('test/src/broken.hamlc')
-      });
-
-      hamlStream.once('error', function(err) {
-        err.fileName.should.equal('test/src/broken.hamlc');
+        err.message.should.containEql('Block level too deep');
+        err.message.should.containEql('test/src/broken.hamlc');
         done();
       });
 
