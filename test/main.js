@@ -1,3 +1,4 @@
+'use strict';
 var should = require('should');
 var gutil = require('gulp-util');
 var path = require('path');
@@ -24,6 +25,24 @@ describe('gulp hamlc', function(){
       String(newFile.contents + "\n").should.equal(fs.readFileSync('test/expected/haml.html', 'utf8'));
       done();
     });
+    hamlStream.write(fakeFile);
+  });
+
+  it('should pass rendering errors', function(done) {
+    var hamlStream = hamlc();
+
+    var fakeFile = new gutil.File({
+      base: "test/src",
+      cwd: "test/",
+      path: "test/src/broken.hamlc",
+      contents: fs.readFileSync('test/src/broken.hamlc')
+    });
+
+    hamlStream.once('error', function(err) {
+      err.message.should.match(/^Block level too deep/i);
+      done();
+    });
+
     hamlStream.write(fakeFile);
   });
 

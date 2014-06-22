@@ -1,6 +1,7 @@
 var map = require('map-stream');
 var rext = require('replace-ext');
 var hamlc = require('haml-coffee');
+var gutil = require('gulp-util');
 
 module.exports = function(options) {
   if(!options) options = {};
@@ -13,13 +14,18 @@ module.exports = function(options) {
     // gulp-haml-coffee compiles to plain HTML per default. If the `js` option is set,
     // it will compile to a JS function.
     var output;
-    if (options.js) {
-      output = hamlc.template(file.contents.toString("utf8"), options.name, options.namespace, options);
-      file.path = rext(file.path, ".js");
-    } else {
-      output = hamlc.render(file.contents.toString("utf8"), options.locals || {}, options);
-      file.path = rext(file.path, ".html");
+    try {
+      if (options.js) {
+        output = hamlc.template(file.contents.toString("utf8"), options.name, options.namespace, options);
+        file.path = rext(file.path, ".js");
+      } else {
+        output = hamlc.render(file.contents.toString("utf8"), options.locals || {}, options);
+        file.path = rext(file.path, ".html");
+      }
+    } catch (e) {
+      throw new gutil.PluginError('gulp-haml-coffee', e, { showStack: true });
     }
+
     file.contents = new Buffer(output);
 
     cb(null, file);
