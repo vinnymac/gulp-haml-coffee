@@ -6,15 +6,25 @@ var gutil = require('gulp-util');
 module.exports = function(options) {
   if(!options) options = {};
 
+  var name = options.name;
+  var ext = ".jst.hamlc";
+
   // Map each file to this function
   function hamlStream(file, cb) {
     if (file.isNull()) return cb(null, file); // pass along
     if (file.isStream()) return cb(new Error("gulp-haml-coffee: Streaming not supported"));
 
+
     // gulp-haml-coffee compiles to plain HTML per default. If the `js` option is set,
     // it will compile to a JS function.
     var output;
     try {
+      if (name) {
+        options.name = name;
+      } else {
+        var templateKey = file.path.split('templates')[1];
+        if (templateKey) options.name = templateKey.substring(1, templateKey.length - ext.length);
+      }
       if (options.js) {
         output = hamlc.template(file.contents.toString("utf8"), options.name, options.namespace, options);
         file.path = rext(file.path, ".js");
